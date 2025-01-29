@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchTextTitle.css';
 
-const SearchTextTitle = ({displayText}) => {
+const  SearchTextTitle = ({displayText}) => {
     return displayText ? (
             <div className='search-text-container'>
                 <h2 id='search-text-label'>Searching for:</h2>

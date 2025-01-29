@@ -4,15 +4,12 @@ import loading_gif from '../../assets/loading-spinner.gif';
 import {
     SearchTextTitle,
     DisplayManager,
-    AsciifyButton,
     Input
 } from '../components';
 import { 
-    convertToGrayScales, getStableDiffusionImageBySearchText, 
-    drawAscii 
+    callRunpodApiWithSearchText 
 } from '../../services/services';
 
-import DownloadButton from '../downloadButton/DownloadButton';
 
 function Main() {
     const [searchParam, setSearchParam] = useState('');
@@ -54,7 +51,7 @@ function Main() {
 	}
 
     const setApiImage = (searchParam) => {
-        getStableDiffusionImageBySearchText(searchParam)
+        callRunpodApiWithSearchText(searchParam)
             .then(imageUrl => {
                 setDisplayMode('image')
                 setSrc(imageUrl)
@@ -66,16 +63,6 @@ function Main() {
             .finally(() => {
                 setSearchActive(true);
             });
-    }
-
-    const asciify = () => {
-		const context = canvas.current.getContext('2d');
-        const imageData = context.getImageData(0, 0, width, height);
-        const grayScales = convertToGrayScales(context, imageData);
-        const pre = drawAscii(grayScales, width);   
-        setPreData(pre); 
-        setDisplayMode('ascii');
-        setSearchActive(false);
     }
     
     const launchEasterEgg = (text) => {
@@ -90,7 +77,6 @@ function Main() {
       <div className='main'>	
           <SearchTextTitle displayText={displayText}/>
           <DisplayManager src={src} search={searchParam} displayMode={displayMode} preData={preData}/>
-          <AsciifyButton searchActive={searchActive} asciify={asciify}/>
           <DownloadButton displayMode={displayMode} />
           <Input handleSubmit={handleSubmit} searchParam={searchParam} setSearchParam={setSearchParam}/>
 		  <canvas 

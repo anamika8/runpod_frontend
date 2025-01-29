@@ -1,6 +1,6 @@
 import convertToGrayScales from "./convertToGrayScales";
 import drawAscii from "./drawAscii";
-import { getStableDiffusionImageBySearchText } from "./stableDiffusionService";
+import { callRunpodApiWithSearchText } from "./runpodService";
 
 
-export { convertToGrayScales, drawAscii, getStableDiffusionImageBySearchText };
+export { callRunpodApiWithSearchText };

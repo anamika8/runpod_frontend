@@ -1,0 +1,56 @@
+:root {
+    --content-width: 512px;
+    --content-height: 512px;
+}
+
+.player-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-display {
+    width: var(--content-width);
+    height: var(--content-height);
+}
+
+.video-display {
+    width: var(--content-width);
+    height: var(--content-height);
+}
+
+.loading-display {
+    width: 100px;
+    height: 100px;
+    padding: 0px;
+    margin: 156px;
+}
+
+.title-text {
+    display: none
+}
+
+pre {
+    font-family: 'Courier New', 'monospace';
+    font-size: 8px;
+    line-height: 1;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    max-width: 512px;
+}
+
+#ascii {
+    background-color: ghostwhite;
+    color: black;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(100,100,100,0.5);
+    letter-spacing: -0.1em;
+    
+}
+
+.easter {
+    width: 512px;
+    height: 512px;
+}

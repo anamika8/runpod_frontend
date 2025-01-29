@@ -77,7 +77,6 @@ function Main() {
       <div className='main'>	
           <SearchTextTitle displayText={displayText}/>
           <DisplayManager src={src} search={searchParam} displayMode={displayMode} preData={preData}/>
-          <DownloadButton displayMode={displayMode} />
           <Input handleSubmit={handleSubmit} searchParam={searchParam} setSearchParam={setSearchParam}/>
 		  <canvas 
 				className='canvas'

@@ -7,13 +7,14 @@ const DEFAULT_IMAGE_WIDTH = 512
 const DEFAULT_IMAGE_HEIGHT = 512
 const DEFAULT_UPSCALE = 1
 
-const RUNPOD_API_KEY = process.env.REACT_APP_STABLE_DIFFUSION_API_KEY;
+const RUNPOD_API_KEY = process.env.REACT_APP_API_KEY;
 const DEFAULT_IMAGE_TO_SHOW = home_gif;
 const RUNPOD_HOST_URL = `https://api.runpod.ai/v2/t66yn9dzz7jydx/run`;
 const DEFAULT_SEARCH_TEXT = `an astronaut riding a horse, digital art, epic lighting, highly-detailed masterpiece trending HQ`;
 
 // public function that can be called by the UI or other services
 export async function callRunpodApiWithSearchText(searchText = "") {
+    console.log(`Hitting the URL ${RUNPOD_HOST_URL} and API key - ${RUNPOD_API_KEY}`)
     if (searchText === "") {
         searchText = DEFAULT_SEARCH_TEXT;
     }

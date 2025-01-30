@@ -9,7 +9,7 @@ const Navbar = () => {
                 <li className='navbar-item'>
                     <NavLink 
                         className='navbar-link' 
-                        to={'/'}
+                        to={'/runpod_frontend'}
                     end>
                         Home
                     </NavLink>

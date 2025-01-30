@@ -23,14 +23,37 @@ export async function callRunpodApiWithSearchText(searchText = "") {
         'Authorization': `Bearer ${API_KEY}`,
     };
     try {
+        // Step 1: Trigger job by making a POST request
         const response = await axios.post(RUNPOD_HOST_URL, data, { headers });
-        console.log(response.status);
+        console.log(`Job triggered with ID: ${response.data.job_id}`);
+        const jobId = response.data.id;
 
-        if (response.data && response.data.output) {
-            const imageBase64 = response.data.output.body;
+        // Step 2: Poll job status
+        let jobStatusResponse;
+        let retries = 10;  // Maximum retries to check job status
+        let imageBase64;
+
+        while (retries > 0) {
+            console.log(`Checking job status for job ID: ${jobId}`);
+            jobStatusResponse = await axios.get(`${STATUS_URL}${jobId}`, { headers });
+            console.log(jobStatusResponse);
+            if (jobStatusResponse.status === 'COMPLETED') {
+                console.log("Job completed successfully.");
+                imageBase64 = jobStatusResponse.output.body;  // Assuming 'output' contains the image data
+                break;
+            } else if (jobStatusResponse.data.status === 'FAILED') {
+                console.error("Job failed.");
+                return DEFAULT_IMAGE_TO_SHOW;
+            }
+            retries--;
+            console.log(`Job is still processing. Retries left: ${retries}`);
+            await delay(2000);  // Wait for 2 seconds before checking again (adjust delay as needed)
+        }
+
+        if (imageBase64) {
             return `data:image/png;base64, ${imageBase64}`;
         } else {
-            console.log("Invalid response structure. Returning default image.");
+            console.log("Job did not complete successfully within the retries.");
             return DEFAULT_IMAGE_TO_SHOW;
         }
     } catch (error) {

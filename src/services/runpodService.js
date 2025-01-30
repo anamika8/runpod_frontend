@@ -1,11 +1,5 @@
 import axios from "axios";
 import home_gif from '../assets/home.gif'
-let Buffer = require('buffer').Buffer
-
-// default width and height of the image to keep API billing cost in check
-const DEFAULT_IMAGE_WIDTH = 512
-const DEFAULT_IMAGE_HEIGHT = 512
-const DEFAULT_UPSCALE = 1
 
 const RUNPOD_API_KEY = process.env.REACT_APP_API_KEY;
 const DEFAULT_IMAGE_TO_SHOW = home_gif;

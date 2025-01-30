@@ -22,19 +22,19 @@ export async function callRunpodApiWithSearchText(searchText = "") {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${API_KEY}`,
     };
-    let imageBase64 = undefined;
-    axios.post(RUNPOD_HOST_URL, data, { headers })
-        .then(response => {
-            console.log(response.status);
-            imageBase64 = response.output.body;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    if (imageBase64 === undefined) {
-        console.log(`No response from RunPod API - hence displaying default image url`);
+    try {
+        const response = await axios.post(RUNPOD_HOST_URL, data, { headers });
+        console.log(response.status);
+
+        if (response.data && response.data.output) {
+            const imageBase64 = response.data.output.body;
+            return `data:image/png;base64, ${imageBase64}`;
+        } else {
+            console.log("Invalid response structure. Returning default image.");
+            return DEFAULT_IMAGE_TO_SHOW;
+        }
+    } catch (error) {
+        console.error('Caught Error:', error);
         return DEFAULT_IMAGE_TO_SHOW;
     }
-    var image = `data:image/png;base64, ${imageBase64}`;
-    return image;
 }

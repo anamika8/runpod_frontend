@@ -8,7 +8,7 @@ const DEFAULT_SEARCH_TEXT = `an astronaut riding a horse, digital art, epic ligh
 
 // public function that can be called by the UI or other services
 export async function callRunpodApiWithSearchText(searchText = "") {
-    console.log(`Hitting the URL ${RUNPOD_HOST_URL} and API key - ${API_KEY}`)
+    console.log(`Hitting the URL ${RUNPOD_HOST_URL} and API key - ${API_KEY}`);
     if (searchText === "") {
         searchText = DEFAULT_SEARCH_TEXT;
     }

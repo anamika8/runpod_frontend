@@ -37,10 +37,10 @@ export async function callRunpodApiWithSearchText(searchText = "") {
         while (retries > 0) {
             console.log(`Checking job status for job ID: ${jobId}`);
             jobStatusResponse = await axios.get(`${STATUS_URL}/${jobId}`, { headers });
-            console.log(jobStatusResponse);
+            console.log(`Current status - ${jobStatusResponse.data.status}`);
             if (jobStatusResponse.data.status === 'COMPLETED') {
                 console.log("Job completed successfully.");
-                imageBase64 = jobStatusResponse.data.output.body;  // Assuming 'output' contains the image data
+                imageBase64 = jobStatusResponse.data.output.body;
                 break;
             } else if (jobStatusResponse.data.status === 'FAILED') {
                 console.error("Job failed.");

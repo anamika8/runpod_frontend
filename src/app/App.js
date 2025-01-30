@@ -10,6 +10,7 @@ function App() {
 		<Header/>
 		<Routes>
 			<Route exact path='/runpod_frontend' element={<Main/>}/>
+			<Route exact path='/' element={<Main/>}/>
 			<Route exact path='/about' element={<About/>}/>
 		</Routes>
     </div>

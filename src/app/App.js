@@ -9,8 +9,7 @@ function App() {
     <div className="App">
 		<Header/>
 		<Routes>
-			<Route exact path='/artscii' element={<Main/>}/>
-			<Route exact path='/' element={<Main/>}/>
+			<Route exact path='/runpod_frontend' element={<Main/>}/>
 			<Route exact path='/about' element={<About/>}/>
 		</Routes>
     </div>
